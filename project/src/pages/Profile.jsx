@@ -3,6 +3,7 @@ import { useSelector,useDispatch} from 'react-redux';
 import {updateUserStart,
   updateUserSuccess,
   updateUserFailure,signOut,} from '../redux/user/userSlice'
+  import Header from '../components/Header';
 const Profile = () => {
   
 
@@ -23,6 +24,8 @@ const Profile = () => {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
+
+   
      
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: 'POST',
@@ -30,6 +33,7 @@ const Profile = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+       
       });
      
       const data = await res.json();
@@ -45,6 +49,10 @@ const Profile = () => {
     }
   };
 
+  // const handleImageChange = (e) => {
+  //   setImage(e.target.files[0]);
+  // };
+
   const handleSignOut = async () => {
     try {
       await fetch('/api/auth/signout');
@@ -56,17 +64,13 @@ const Profile = () => {
   //
 
   return (
+    <>
+    <Header/>
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
       
-      <input
-          type='file'
-          ref={fileRef}
-          hidden
-          accept='image/*'
-          onChange={(e) => setImage(e.target.files[0])}
-        />
+     
 
       <img
           src={currentUser.profilePicture}
@@ -74,6 +78,8 @@ const Profile = () => {
           className='h-24 w-24 self-center cursor-pointer rounded-full object-cover mt-2'
           onClick={() => fileRef.current.click()}
         />
+
+
 
            <input
           defaultValue={currentUser.username}
@@ -114,6 +120,8 @@ const Profile = () => {
         {updateSuccess && 'User is updated successfully!'}
       </p>
     </div>
+    
+</>
   )
 }
 

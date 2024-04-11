@@ -4,29 +4,35 @@ import About from "./pages/About"
 import Signin from "./pages/Signin"
 import Signup from "./pages/Signup"
 import Profile from "./pages/Profile"
-import Header from "./components/Header"
+import AdminPrivateroute from "./components/AdminPrivateroute"
 import PrivateRoute from "./components/PrivateRoute"
+import AdminLogin from "./pages/AdminLogin"
+import AdminHome from "./pages/AdminHome"
 
 
 function App() {
   return (
     <BrowserRouter>
-    <Header/>
+   
     <Routes>
+   
     <Route path="/" element={<Home/>}/>
     <Route path="/about" element={<About/>}/>
     <Route path="/sign-in" element={<Signin/>}/>
     <Route path="/sign-up" element={<Signup/>}/>
-
+   
     <Route element={<PrivateRoute/>}>
 
     <Route path="/profile" element={<Profile/>}/>
     </Route>
+
+    <Route path="/admin-login" element={<AdminLogin/>}/>
+
+   
+
+    <Route path="/admin-home" element={<AdminHome/>}/>
+ 
     
-
-
-    
-
     </Routes>
     
     </BrowserRouter>
