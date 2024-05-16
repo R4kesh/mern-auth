@@ -39,9 +39,9 @@ const Home = () => {
         use it as a template for your own projects!
       </p>
     
-      <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
+      {/* <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
           Sign out
-        </span>
+        </span> */}
     </div>
     </>
   )
